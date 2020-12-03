@@ -1,0 +1,585 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="博客网站">
+  <meta name="author" content="Sybx">
+  <meta name="keywords" content="">
+  <title>锁 - Ice &amp; sybx</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"sybx.cc","root":"/","version":"1.8.6","typing":{"enable":true,"typeSpeed":70,"cursorChar":"|","loop":false},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"copy_btn":true,"image_zoom":{"enable":true},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Sybx</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="锁">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-04-15 00:00" pubdate>
+        2020年4月15日 凌晨
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      4k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      43
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">锁</h1>
+            
+            <div class="markdown-body">
+              <h1 id="“锁”"><a href="#“锁”" class="headerlink" title="“锁”"></a>“锁”</h1><h3 id="Synchronized原理？"><a href="#Synchronized原理？" class="headerlink" title="Synchronized原理？"></a>Synchronized原理？</h3><p>这是一道Java面试中几乎百分百会问到的问题，因为没有任何写过并发的开发者会没听或者没接触过<code>Synchroized</code></p>
+<p><code>Synchroized</code>是由JVM实现的一种实现互斥同步的一种方式，如果你查看被<code>Synchronized</code>修饰过的程序块编译后的字节码，会发现被<code>Synchronized</code>修饰过的程序块，在编译前后被编译器生成了<code>moniternter</code>和<code>monitorexit</code>两个字节码指令。</p>
+<p><strong><em>这两个指令是什么意思呢？</em></strong></p>
+<p>​    在虚拟机执行到<code>moniternter</code>指令时，首先要尝试获取对象的锁；如果这个对象没有锁定，或者当前线程已经拥有这个对象的锁，把锁的计数器+1；当执行<code>monitorexit</code>指令时讲锁计数器-1；当计数器为0时，锁就释放了。</p>
+<p>​    如果获取对象失败了，当前线程就要阻塞等待，直到对象锁被另一个线程释放为止。</p>
+<p><code>Java</code>中<code>Synchronized</code>通过在对象头设置标记，达到获取锁和释放锁的目的。</p>
+<h3 id="刚才提到获取对象的锁，这个“锁”到底是什么？如何确定对象的锁？"><a href="#刚才提到获取对象的锁，这个“锁”到底是什么？如何确定对象的锁？" class="headerlink" title="刚才提到获取对象的锁，这个“锁”到底是什么？如何确定对象的锁？"></a>刚才提到获取对象的锁，这个“锁”到底是什么？如何确定对象的锁？</h3><p>“锁”的本质其实是<code>moniternter</code>和<code>monitorexit</code>字节码指令的一个<code>Reference</code>类型的参数，即要锁定的对象和解锁的对象。我们知道，使用<code>Synchronized</code>可以修饰不同的对象，因此，对应的对象锁可以这么确定。</p>
+<ol>
+<li><p>如果<code>Synchronized</code>明确指定了锁对象，比如<code>Synchronized(变量名)</code>、<code>Synchronized(this)</code>等，说明加解锁对象为该对象。</p>
+</li>
+<li><p>如果没有明确指定：</p>
+<ul>
+<li><p>若<code>Synchronized</code>修饰的方法为非静态方法，表示此方法对应的类对象为锁对象。</p>
+</li>
+<li><p>若<code>Synchronized</code>修饰的方法为静态方法，则表示此方法对应的类对象为锁对象。</p>
+<p><strong>注意！！</strong>   当一个对象被锁住时，对象里面所有用<code>Synchronized</code>修饰的方法都将产生阻塞，而对象非<code>Synchronized</code>修饰的方法可正常被调用，不受影响。</p>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="什么是可重入性，为什么说Synchronized是可重入锁？"><a href="#什么是可重入性，为什么说Synchronized是可重入锁？" class="headerlink" title="什么是可重入性，为什么说Synchronized是可重入锁？"></a>什么是可重入性，为什么说<code>Synchronized</code>是可重入锁？</h3><p>可重入性是锁的一个基本要求，是为了解决自己锁死自己的情况。举例：一个类中的同步方法调用另一个同步方法，假如<code>Synchronized</code>不支持重入，进入method2方法时当前线成获得锁，method2方法里面执行method1时当前线程又要去尝试获取锁，这时如果不支持重入，他就要等待释放，把自己阻塞，导致锁死自己。对<code>Synchronized</code>来说，可重入性是显而易见的，刚才提到，在执行<code>monitorenter</code>指令时，如果这个对象没有锁定，或者当前线程已经拥有了这个对象的锁 <strong>（而不是以拥有了锁则不能继续获取）</strong>，就把锁的计数器+1，其实本质上就通过这种方式实现了可重入性。</p>
+<h3 id="JVM对Java的原生锁做了哪些优化？"><a href="#JVM对Java的原生锁做了哪些优化？" class="headerlink" title="JVM对Java的原生锁做了哪些优化？"></a>JVM对Java的原生锁做了哪些优化？</h3><p>在Java6之前，Monitor的实现完全依赖底层操作系统的互斥锁来实现，也就是我们刚才在问题二中所阐述的获取/释放逻辑。</p>
+<p>由于Java层面的线程与操作系统的原生线程有映射关系，如果要将一个线程进行阻塞或唤起都需要操作系统的协助，这就需要从用户态切换到内核态来执行，这种切换代价十分昂贵，很耗处理器时间，现在JDK中做了大量的优化。</p>
+<p>一种优化是使用自旋锁，即在把线程进行阻塞操作之前先让线程自旋等待一段时间，可能在等待期间其他线程已经解锁，这时就无需再让线程执行阻塞操作，避免了用户态到内核态的切换。</p>
+<p>现代JDK中还提供了三种不同的<code>Monitor</code>实现，也就是三种不同的锁：</p>
+<ul>
+<li><p>偏向锁（Biased Locking）</p>
+</li>
+<li><p>轻量级锁</p>
+</li>
+<li><p>重量级锁</p>
+<p>这三种锁使得JDK得以优化<code>Synchronized</code>的运行，当JVM检测到不同的竞争状况时，会自动切换到适合的锁实现，这就是锁的升级、降级。</p>
+</li>
+<li><p>当没有竞争出现时，默认会使用偏向锁</p>
+<p><code>JVM会利用CAS操作，在对象头上的Mark Word部分设置线程ID，以表示这个对象偏向于当前线程，所以并不涉及真正的互斥锁门因为很多应用场景中，大部分对象生命周期中最多会被一个线程锁定，使用偏斜锁可以降低无竞争开销。</code></p>
+<hr>
+<hr>
+</li>
+<li><p>如果有另一线程试图锁定某个被偏斜过的对象，JVM就撤销偏斜锁，切换到轻量级锁实现。</p>
+</li>
+<li><p>轻量级锁以来CAS操作Mark Word来试图获取锁，如果重试成功，就使用普通的轻量级锁；否则，进一步升级为重量级锁。</p>
+</li>
+</ul>
+<h3 id="为什么说Synchronized是非公平锁？"><a href="#为什么说Synchronized是非公平锁？" class="headerlink" title="为什么说Synchronized是非公平锁？"></a>为什么说<code>Synchronized</code>是非公平锁？</h3><p>非公平主要表现在获取锁的行为上，并非是按照申请锁的时间前后给等待线程分配锁的，每当锁被释放后，任何一个线程都有机会竞争到锁，这样做的目的是为了提高执行性能，缺点是可能 会产生线程饥饿现象。</p>
+<h3 id="什么是锁消除和锁粗化？"><a href="#什么是锁消除和锁粗化？" class="headerlink" title="什么是锁消除和锁粗化？"></a>什么是锁消除和锁粗化？</h3><ul>
+<li><strong>锁消除</strong>：指虚拟机即时编译器在运行时，对一些代码上要求同步，但被检测到不可能存在共享数据竞争的锁进行消除。主要根据逃逸分析。</li>
+<li><strong>锁粗化</strong>：原则上，同步块的作用范围要尽量小。但是如果一系列的连续操作都对一个对象反复加锁和解锁，甚至枷锁操作在循环体内，频繁地进行互斥同步操作也会导致不必要的性能损耗。 锁粗化就是增大锁的作用域。</li>
+</ul>
+<h3 id="为什么说Synchronized是一个悲观锁？乐观锁的实现原理又是什么？什么是CAS，它有什么特性？"><a href="#为什么说Synchronized是一个悲观锁？乐观锁的实现原理又是什么？什么是CAS，它有什么特性？" class="headerlink" title="为什么说Synchronized是一个悲观锁？乐观锁的实现原理又是什么？什么是CAS，它有什么特性？"></a>为什么说<code>Synchronized</code>是一个悲观锁？乐观锁的实现原理又是什么？什么是CAS，它有什么特性？</h3><p><code>Synchronized</code>显然是一个悲观锁，因为它的并发策略是悲观的：</p>
+<p><code>不管是否会产生竞争，任何的数据操作都必须要加锁、用户态核心态转换、维护锁计数器和检查是否有被阻塞的线程需要被唤醒等操作。</code>随着硬件指令集的发展，我们可以使用基于冲突检测的乐观并发策略，先进行操作，如果没有其他线程征用数据，那操作成功了；</p>
+<p>​    如果共享数据有征用，产生了冲突，那就再进行其他的补偿措施。这种乐观的并发策略的许多实现不需要线程挂起，所以被称为非阻塞同步。</p>
+<p>​    乐观锁的核心算法是<code>CAS(Compareand Swap, 比较并交换)</code>，它设计到三个操作数:内存值、预期值、新值。当且仅当内存值相等时才讲内存值修改为新值。这样的处理逻辑是，首先检查某块内存的值是否跟你之前我读区时的一样，如不一样则表示此内存值已经被别的线程更改过，舍弃本次操作块，否则说明期间没有其他线程对此内存值的操作，可以把新值设置给此块内存。</p>
+<p>​    <code>CAS</code>具有原子性，它的原子性有CPU硬件指令实现保证，即使用<code>JNI</code>调用<code>Native</code>方法调用用由**C++**编写的硬件级别指令，<code>JDK</code>中提供了<code>Unsafe</code>类执行这些操作。</p>
+<h3 id="乐观锁一定就是好的吗？"><a href="#乐观锁一定就是好的吗？" class="headerlink" title="乐观锁一定就是好的吗？"></a>乐观锁一定就是好的吗？</h3><p>乐观锁避免了悲观锁独占对象的现象，同时也提高了并发性能，但它也有缺点：</p>
+<ol>
+<li>乐观锁只能保证一个共享变量的原子操作。如果多一个或几个变量，乐观锁将变得力不从心，但互斥锁能轻易解决，不管对象数量多少及对象颗粒度大小。</li>
+<li>长时间自旋可能导致开销大。加入<code>CAS</code>长时间不成功而一直自旋，会给CPU带来很大的开销。</li>
+<li>ABA问题。<code>CAS</code>核心思想是通过比对内存值与预期值是否一样而判断内存是否被改过，但这个判断逻辑不严谨，加入内存值原来是A，后来被一条线程改为B，最后又被改成了A，则CAS认为此内存值并没有发生改变，但实际上是有被其他线程改过的，这种情况对以来过程值的情景运算结果影响很大。解决的思路是引入版本号，每次变量更新都把版本号加一。</li>
+</ol>
+<h3 id="可重入锁ReentrantLock及其他显示锁相关问题"><a href="#可重入锁ReentrantLock及其他显示锁相关问题" class="headerlink" title="可重入锁ReentrantLock及其他显示锁相关问题"></a>可重入锁<code>ReentrantLock</code>及其他显示锁相关问题</h3><ul>
+<li><h4 id="跟Synchronized相比可重入锁ReentrantLock其实现原理有什么不同？"><a href="#跟Synchronized相比可重入锁ReentrantLock其实现原理有什么不同？" class="headerlink" title="跟Synchronized相比可重入锁ReentrantLock其实现原理有什么不同？"></a><strong>跟<code>Synchronized</code>相比可重入锁<code>ReentrantLock</code>其实现原理有什么不同？</strong></h4><p>其实，锁的实现原理基本都是为了达到一个目的：<strong>让所有的线程都能看到某种标记。</strong></p>
+<p><code>Synchronized</code>通过在对象头中设置标记实现了这一目的，是一种JVM原生的锁的实现方式，而<code>ReentrantLock</code>以及所有的给予<code>Lock</code>接口的实现类，都是通过用一个<code>Volitile</code>修饰的<code>int</code>型变量，并保证悲歌线程都能拥有对该<code>int</code>的可见性和 原子修改，其本质是基于所有的<code>AQS</code>框架。</p>
+<h3 id="什么是AQS框架？"><a href="#什么是AQS框架？" class="headerlink" title="什么是AQS框架？"></a>什么是<code>AQS</code>框架？</h3><p><code>AQS(AbstractQueuedSynchronizer)</code>是一个用来构建锁和同步锁的框架，各种<code>Lock</code>包中的锁(常用的有    <code>ReentrantLock</code>、 <code>ReadWriteLock</code>) ， 以 及 其 他 如 <code>Semaphore</code>、 <code>CountDownLatch</code>， 甚 至是早期的 <code>FutureTask</code> 等，都是基于 <code>AQS</code> 来构建。</p>
+<ul>
+<li><code>AQS</code>在内部定义了一个<code>volatile int state</code>变量，表示同步状态：当线程调用<code>lock</code>方法时，如果<code>state=0</code>,说明没有哦任何线程占用共享资源的锁，可以获得锁并将<code>state=1</code>；如果<code>state=1</code>，则说明又线程目前正在使用共享变量，其他线程必须加入同步队列进行等待。</li>
+<li><code>AQS</code>通过<code>Node</code>内部类构成的一个双向链表结构的不同队列，来完成线程获取锁的排队工作，当有线程获取锁失败后，就被调价到队列末尾。<ul>
+<li><code>Node</code>类是对要访问同步代码的线程的封装，包含了线程本身及其状态叫<code>waitStatus</code>(有五种不同去值，分别表示是否被阻塞，是否等待唤醒，是都已经被取消等)，每个<code>Node</code>节点关联其<code>prev</code>和<code>next</code>节点，方便线程释放锁后快速唤醒下一个在等待的线程，是一个<code>FIFO</code>的过程。</li>
+<li><code>Node</code>类有两个常量，<code>SHARED</code>和<code>EXCLUSIVE</code>，分别代表共享模式和独占模式。所谓共享模式是一个锁允许多条线同时操作（信号量<code>Semaphore</code>就是基于<code>AQS</code>的共享模式实现的），独占模式是同一个时间段只能有一个线程对共享资源进行操作，多余的请求线程需要排队等待(如<code>ReentranLock</code>)。</li>
+</ul>
+</li>
+<li><code>AQS</code>通过内部类<code>ConditionObject</code>构建等待队列(可有多个)，当<code>Condition</code>调用<code>wait()</code>方法后，线程会加入等待队列中，而当<code>Condition</code>调用<code>signal()</code>方法后，线程将从等待队列转移到同步队列中进行锁竞争。</li>
+<li><code>AQS</code>和<code>Condition</code>个字维护了不同的队列，在使用<code>Lock</code>和<code>Condition</code>的时候，其实就是两个队列的互相移动。</li>
+</ul>
+</li>
+</ul>
+<h3 id="Synchronized和ReentrantLock的异同"><a href="#Synchronized和ReentrantLock的异同" class="headerlink" title="Synchronized和ReentrantLock的异同"></a><code>Synchronized</code>和<code>ReentrantLock</code>的异同</h3><p><code>ReentrantLock</code>是Lock的实现类，是一个互斥的同步锁。</p>
+<p>从功能监督，<code>ReentrantLock</code>比<code>Synchronized</code>的同步操作更精细(因为可以像普通对象一样使用)，甚至实现<code>Synchronized</code>没有的高级功能，如：</p>
+<ol>
+<li><strong>等待可中断 ：</strong>当持有锁的线程长期不释放锁的时候，正在等待的线程可以选择 放弃等待，对处理执行时间非常长的同步块很有用。</li>
+<li><strong>带超市的获取锁尝试：</strong>在指定的时间范围内获取锁，如果时间到了 仍然无法获取则返回。</li>
+<li><strong>可以判断是否有线程在排队等待获取锁</strong></li>
+<li><strong>可以响应中断请求：</strong>与<code>Synchronized</code>在JVM层面上实现的，不但可以通过一些监控工具监控<code>Synchronzied</code>的锁定，而且在代码执行出现异常时，JVM会自动释放锁定；但是使用<code>Lock</code>则不行，<code>Lock</code>时通过代码实现的，要保证锁定一定会被释放，就必须将<code>unLock()</code>放到<code>finally&#123;&#125;</code>中。</li>
+</ol>
+<p>从性能角度，<code>Synchronized</code>早起实现比较低效，对比<code>ReentrantLock</code>，大多数场景性能都相差较大。但是在Java6中对其进行了非常多的改进，在竞争不激烈时，<code>Synchronized</code>的性能要优于<code>ReentrantLock</code>；在搞竞争情况下<code>Synchronized</code>的性能会下降 几十倍，但是<code>ReentrantLock</code>的性能能维持常态。</p>
+<h3 id="ReentrantLock是如何实现可重入性的！"><a href="#ReentrantLock是如何实现可重入性的！" class="headerlink" title="ReentrantLock是如何实现可重入性的！"></a><code>ReentrantLock</code>是如何实现可重入性的！</h3><p><code>ReentrantLock</code>内部自定义了同步器<code>Sync(Synnc及实现了AQS，有实现了AOS，而AOS提供了一种互斥锁持有的方式)</code>，其实就是加锁的时候通过CAS算法，将线程对象放到一个双向链表中，每次获取锁的时候，看下当前维护的那个线程ID和当前请求的线程ID是否一样，一样就重入了。</p>
+<h3 id="除了ReentrantLock，还接触过JUCjava-util-concurrent中的那些并发工具？"><a href="#除了ReentrantLock，还接触过JUCjava-util-concurrent中的那些并发工具？" class="headerlink" title="除了ReentrantLock，还接触过JUCjava.util.concurrent中的那些并发工具？"></a>除了<code>ReentrantLock</code>，还接触过JUC<code>java.util.concurrent</code>中的那些并发工具？</h3><p>通常所说的并发包(JUC)也就是<code>java.util.concurrent</code>及其子包，集中了Java并发的各种基础工具类，具体主要包括几个方面：</p>
+<ul>
+<li>提供了<code>CountDownLatch</code>、<code>CycliBarrier</code>、<code>Semaphore</code>等，比<code>Synchronized</code>更加高级，可以实现更加丰富多线程操作的同步结构。</li>
+<li>提供了<code>ConcurrentHashMap</code>、有序的<code>ConcunrrentSkipListMap</code>或者通过类似快照机制实现线程安全的动态数组<code>CopyOnWriteArrayList</code>等，各种线程安全的容器。</li>
+<li>提供了<code>ArrayBlockingQueue</code>、<code>SynchorousQueue</code>或针对特定场景的<code>PriorityBlockingQueue</code>等，各种并发队列实现。</li>
+<li>强大的<code>Executor</code>框架，可以创建各种不同类型的咸亨吃，调度任务运行等。</li>
+</ul>
+<h3 id="ReadWriteLock和StampedLock"><a href="#ReadWriteLock和StampedLock" class="headerlink" title="ReadWriteLock和StampedLock"></a><code>ReadWriteLock</code>和<code>StampedLock</code></h3><p>虽然<code>ReentrantLock</code>和<code>Synchronized</code>简单实用，但是行为上有一定局限性，要么不占，要么独占。实际应用场景中，有时候不需要大量竞争的写操作，而是以并发读取为主，为了进一步优化并发操作的力度，Java提供了读写锁。</p>
+<p>读写锁基于的原理是多个读操作不需要互斥，如果读锁试图锁定时，写锁是被某个线程持有，读锁将无法获得，而只好等待对象操作结束，这样就可以自动保证不会读取到有争议的数据。</p>
+<p><code>ReadWriteLock</code>代表了一对锁，下面是一个基于读写锁实现的数据结构，当数据量较大，并发读多，并发写少的时候，能够比出同步版本凸显出优势：</p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RWSample</span> </span>&#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> Map&lt;String, String&gt; m = <span class="hljs-keyword">new</span> TreeMap&lt;&gt;();<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> ReentrantReadWriteLock rwl = <span class="hljs-keyword">new</span> ReentrantReadWriteLock();<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> Lock r = rwl.readLock();<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> Lock w = rwl.writeLock();<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">get</span><span class="hljs-params">(String key)</span></span>&#123;<br>        System.out.println(<span class="hljs-string">&quot;读锁锁定!&quot;</span>);<br>        <span class="hljs-keyword">try</span>&#123;<br>            <span class="hljs-keyword">return</span> m.get(key);<br>        &#125; <span class="hljs-keyword">finally</span> &#123;<br>            r.unlock();<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">put</span><span class="hljs-params">(String key, String entry)</span></span>&#123;<br>        w.lock();;<br>        System.out.println(<span class="hljs-string">&quot;写锁锁定!&quot;</span>);<br>        <span class="hljs-keyword">try</span>&#123;<br>            <span class="hljs-keyword">return</span> m.put(key, entry);<br>        &#125;  <span class="hljs-keyword">finally</span> &#123;<br>            w.unlock();<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+<p>读写锁看起来比<code>Synchronized</code>的粒度似乎细一些，但在实际应用中，其表现也并不尽如人意 ，主要还是因为 相对比较大的恶开销。随意JDK在后期引入了 <code>StampedLock</code>，在提供类似读写锁的同时，还支持优化读模式。大多数情况下读操作并不会和写操作冲突，其逻辑是先试着修改，然后通过<code>validate</code>方法确认是否进入了写模式，如果没有进入，就成功 避免了开销；如果进入，则尝试 获取读锁。</p>
+<figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">StampedSample</span></span>&#123;<br>	<span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> StampedLock sl = <span class="hljs-keyword">new</span> StampedLock();<br>  <br>  <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">mutate</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-keyword">long</span> stamp = sl.writeLock();<br>    <span class="hljs-keyword">try</span>&#123;<br>      write();<br>    &#125; <span class="hljs-keyword">finally</span>&#123;<br>      sl.unlockWrite();<br>    &#125;<br>  &#125;<br>  <span class="hljs-function">Data <span class="hljs-title">access</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-keyword">long</span> stamp = sl.tryOptimisticRead();<br>    Data data = read();<br>    <span class="hljs-keyword">if</span>(!sl.validate(stamp))&#123;<br>      stamp = sk.readLock();<br>      <span class="hljs-keyword">try</span>&#123;<br>        data = read();<br>      &#125; <span class="hljs-keyword">finally</span>&#123;<br>        sl.unlockRead();<br>      &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> data;<br>  &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>
+
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/04/16/2020-04-15-%E7%BA%BF%E7%A8%8B%E6%B1%A0/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">线程池</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":200})
+    NProgress.start()
+    document.addEventListener('DOMContentLoaded', function() {
+      window.NProgress && window.NProgress.inc();
+    })
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>

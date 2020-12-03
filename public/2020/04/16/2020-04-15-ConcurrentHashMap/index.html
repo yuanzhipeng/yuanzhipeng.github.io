@@ -1,0 +1,533 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="博客网站">
+  <meta name="author" content="Sybx">
+  <meta name="keywords" content="">
+  <title>ConcurrentHashMap - Ice &amp; sybx</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"sybx.cc","root":"/","version":"1.8.6","typing":{"enable":true,"typeSpeed":70,"cursorChar":"|","loop":false},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"copy_btn":true,"image_zoom":{"enable":true},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Sybx</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="ConcurrentHashMap">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-04-16 12:43" pubdate>
+        2020年4月16日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.2k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      13
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">ConcurrentHashMap</h1>
+            
+            <div class="markdown-body">
+              <h1 id="“ConcurrentHashMap”"><a href="#“ConcurrentHashMap”" class="headerlink" title="“ConcurrentHashMap”"></a>“<strong>ConcurrentHashMap</strong>”</h1><p>**<code>ConcurrentHashMap</code>**是线程安全的Map，在1.7和1.8中实现有所不同。</p>
+<ul>
+<li><p>在JDK1.7中采用分段锁的机制，实现并发的更新操作，底层采用数组+链表的存储结构，包含两个核心静态内部类<code>Segment</code>和<code>HashEntry</code>。</p>
+<p>1.<code>Segment</code>继承<code>ReentrantLock</code>(重入锁)用来充当锁的角色，每个<code>Segment</code>对象守护每个散列映射表的若干个木桶；</p>
+<p>2.<code>HashEntry</code>用来封装映射表的键-值对</p>
+<p>3.每个桶石油若干个<code>HashEntry</code>对象链接起来的链表</p>
+</li>
+<li><p>在JDK1.8中，采用** Node + CAS + Synchronized来保证并发安全。取消类<code>Segment</code>，直接用table数组存储键值对；当<code>HashEntry</code>对象组成的链表长度超过<strong>TREEIFY_THRESHOLD</strong>时，链表转换为红黑树，提升性能。底层变更为数组 + 链表 + 红黑树</p>
+<p>在1.8里</p>
+<p>1.<strong>重要的常量： <code>private transient volatile int sizeCtl;</code></strong></p>
+<p>​    当为负数时，-1表示正在初始化，-N表示N-1个线程正在进行扩容</p>
+<p>​    当为0时，表示table还没有初始化</p>
+<p>​    当为其他正数时，表示初始化或下一次进行扩容的大小</p>
+<p>2.<strong>数据结构：</strong></p>
+<p>​    <strong>Node</strong>是存储结构的基本单元，实现了Map中的<code>Entry</code>接口，用于存储数据</p>
+<p>​    <strong>TreeNode</strong>继承<code>Node</code>，但是数据结构转换成了二叉树结构，是红黑树的存储结构，用于红黑树中存储数据</p>
+<p>​    <strong>TreeBin</strong>是封装<code>TreeNode</code>的容器，提供转换红黑树的一些条件和锁的控制</p>
+<p>3.<strong>存储对象是(<code>put()</code>方法)：</strong></p>
+<p>​    1.如果没有初始化，就调用<code>initTable()</code>方法来进行初始化；</p>
+<p>​    2.如果没有 hash 冲突就直接 CAS 无锁插入;</p>
+<p>​    3.如果需要扩容，就先进行扩容;</p>
+<p>​    4.如果存在hash冲突，就加锁来保证线程安全，两种情况：一种是链表形式就直接遍历到尾端插入，一种是红黑树就按照红黑树结构插入；</p>
+<p>​    5.如果该链表的数量大于阀值 8，就要先转换成红黑树的结构；</p>
+<p>​    6.如果添加成功就调用 <code>addCount()</code> 方法统计 size，并且检查是否需要扩容。</p>
+</li>
+<li><p>扩容方法<code>transfer()</code>默认容量为16，扩容时，容量变为原来的两倍；<code>helpTransfer()</code>调用多个工作线程一起帮助进行扩容，这样的效率就会更高</p>
+</li>
+<li><p><strong>获取对象时(<code>get()</code>方法)：</strong></p>
+<p>1.计算hash值，定位到该table索引位置，如果是首节点符合就返回；</p>
+<p>2.如果与到扩容时，会调用标记正在扩容节点<code>ForwardingNode.find()</code>方法，查找该节点匹配就返回；</p>
+<p>3.以上都不符合的话，就遍历节点，匹配就返回，否则最后就返回null；</p>
+</li>
+</ul>
+<h3 id="为什么hashmap-1-8-不直接使用红黑树而还要保留链表"><a href="#为什么hashmap-1-8-不直接使用红黑树而还要保留链表" class="headerlink" title="为什么hashmap 1.8 不直接使用红黑树而还要保留链表"></a>为什么hashmap 1.8 不直接使用红黑树而还要保留链表</h3><p>因为插入时红黑树需要进行左旋，右旋操作，而单链表不需要，在数量较少时，红黑树并没有表现出比链表更好的查询效率，而且在占用空间上，红黑树的节点比链表的节点更大，时链表的两倍；</p>
+<h3 id="为什么大于8-个的时候才转换红黑树"><a href="#为什么大于8-个的时候才转换红黑树" class="headerlink" title="为什么大于8 个的时候才转换红黑树"></a>为什么大于8 个的时候才转换红黑树</h3><p><strong>按照 JDK 源码里解释是这样的:</strong></p>
+<p><code>TreeNodes</code> 占用空间是普通 <code>Nodes</code> 的两倍，所以只有当 bin 包含足够多的节点时才会转成<code>TreeNode</code>s，而是否足够多就是由<code> TREEIFY_THRESHOLD</code> 的值决定的。当 bin 中节点数变少时， 又会转成普通的 bin。<code>TREEIFY_THRESHOLD</code> 的值是个空间和时间的权衡。</p>
+<p>当 hashCode 离散性很好的时候，树型 bin 用到的概率非常小，因为数据均匀分布在每个 bin 中，几乎不会有 bin 中链表长度会达到阈值。</p>
+<p>但是在随机 hashCode 下，离散性可能会变差，然而 JDK 又不能阻止用户实现这种不好的 hash 算法，因此就可能导致不均匀的数据分布。</p>
+<p>不过理想情况下随机 hashCode 算法下所有 bin 中节点的分布频率会遵循泊松分布，</p>
+<p>一个 bin 中链表长度达到 8 个元素的概率为 0.00000006，几乎是不可能事件。所以，之所 以选择 8，不是拍拍屁股决定的，而是根据概率统计决定的。</p>
+<p><strong>当然网上也有这样的说法:</strong></p>
+<p>红黑树的平均查找长度是 log(n)，如果长度为 8，平均查找长度为 log(8)=3，链表的平均查 找长度为 n/2，当长度为 8 时，平均查找长度为 8/2=4，这才有转换成树的必要;链表长度 如果是小于等于 6，6/2=3，而 log(6)=2.6，虽然速度也很快的，但是转化为树结构和生成树 的时间并不会太短。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/12/02/hello-world/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Hello World</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/04/16/2020-04-15-%E7%BA%BF%E7%A8%8B%E6%B1%A0/">
+                        <span class="hidden-mobile">线程池</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":200})
+    NProgress.start()
+    document.addEventListener('DOMContentLoaded', function() {
+      window.NProgress && window.NProgress.inc();
+    })
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>

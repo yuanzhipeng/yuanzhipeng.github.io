@@ -1,0 +1,73 @@
+---
+layout: post
+title: "线程池"
+date: 2020-04-16 20:43:24.000000000 +09:00
+---
+
+# “线程池”
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+
+## `ThreadPoolExecutor`线程池参数详解
+
+```java
+public ThreadPoolExecutor(int corePoolSize, int maximumPoolSize, long keepAliveTime, TimeUnit unit, BlockingQueue<Runnable> workQueue,  ThreadFactory threadFactory, RejectedExecutionHandler handler)
+```
+
+* `corePoolSize`**：核心线程数**
+
+  当提交一个任务时，线程池创建一个信线程执行任务，直到当前线程数等于`corePoolSize`;如果当前线程数为`corePoolSize`,继续提交任务被保存到阻塞队列中，等待被执行；如果执行了线程池`prestartAllCoreThreads()`方法，线程池会提前创建并启动所有核心线程。
+
+* `maximumPoolSize`**：最大线程数**
+
+  如果当前阻塞队列满了，且继续提交任务，则创建新的线程执行任务，前提是当前线程数小于`maximumPoolSize`；
+
+* `TimeUnit`**:`keepAliveTime`的时间单位**
+
+* `workQueue`**:`workQueue`必须是`BlockingQueue`阻塞队列当线程池中的线程数超过它的`corePoolSize`的时候,线程会进入阻塞队列进行阻塞等待。通过`workQueue`，线程池实现了阻塞功能。**
+
+  用于保存等待执行任务的阻塞队列，一般来说，我们应该尽量使用有界队列，因为使用无界队列作为工作队列会对线程池带来如下影响：
+
+  ​	1.当线程池中的线程数达到`corePoolSize`后，新任务将在无界队列中等待，因此线程池中的线程数不会超过`corePoolSize`
+
+  ​	2.由于1，使用无界队列时`maximumPoolSize`将是一个无效参数
+
+  ​	3.由于1和2，使用无界队列时`keepAliveTime`将是一个无效参数
+
+  ​	4.更重要的是，使用无界Queue可能会耗尽系统资源，有界队列则有助于防止资源耗尽，同时即使使用有界		队列也要控制队列的大小在一个合适的范围。
+
+  所以我们一般会使用，`ArrayBlockingQueue`、`LinkedBlockingQueue`、`SynchronousQueue`、`PriorityBlockingQueue`
+
+* `threadFactory`**:创建线程池的工厂**
+
+  通过自定义的线程池工厂可以给每个新建的线程设置一个具有识别度的线程名，当然还可以更加自由的对线程做更多的设置，比如设置所有的线程为守护线程。`Executors`静态工厂里默认的`threadFactory`，线程的明明规则是"pool-数字-thread-数字"。
+
+* `RejectedExecutionHandler`**:线程池的饱和策略**
+
+  当阻塞队列满了，且没有空闲的工作线程，如果继续提交任务，必须采取一种策略处理该任务，线程池提供了4中策略：
+
+  1.`AbortPolicy` : 直接抛出异常，默认策略
+
+  2.`CallerRunsPolicy` : 用调用者所在的线程来执行任务
+
+  3.`DiscardOldestPolicy` ： 丢弃阻塞队列中靠最前的任务，并执行当前任务
+
+  4.`DiscardPolicy` ： 直接丢弃任务
+
+  当然也可以根据应用场景实现`RejectedExecutionHandler`接口，自定义饱和策略，如记录日志或持久化存储不能处理的任务
+
+
+
+### 如何合理地配置线程池
+
+要想合理地配置线程池，就必须首先分析任务特性，可以从以下几个角度来分析：
+
+* **任务的性质：**CPU密集型任务、IO密集型任务和混合型任务
+* **任务的优先级：**高、中和低
+* **任务的执行时间：**是都以来其他系统资源，如数据库连接
+
+性质不同的任务可以用不同规模的线程池分开处理
+
+CPU密集型任务应配置尽可能小的线程，如配置**Ncpu+1**个线程的线程池。由于IO密集型任务并不是一直在执行任务，则应配置尽可能多的线程，如**2*Ncpu**
+
+混合型的任务，如果可以拆分，将其拆分为一个cpu密集型任务和一个IO密集型任务，只要这两个任务执行的时间相差不是太大，那么分解后执行的吞吐量将高于串行的吞吐量。如果这两个任务执行时间相差太大，则没必要进行茶粉。可以通过`Runtime.getRuntime().availableProcessors()`方法获取当前设备的CPU个数。

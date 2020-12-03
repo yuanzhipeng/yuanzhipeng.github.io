@@ -1,0 +1,618 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="博客网站">
+  <meta name="author" content="Sybx">
+  <meta name="keywords" content="">
+  <title>Ice &amp; sybx</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"sybx.cc","root":"/","version":"1.8.6","typing":{"enable":true,"typeSpeed":70,"cursorChar":"|","loop":false},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"copy_btn":true,"image_zoom":{"enable":true},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Sybx</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-12-02 15:58" pubdate>
+        2020年12月2日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      814 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      9
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none"></h1>
+            
+            <div class="markdown-body">
+              <h1 id="MyBatis源码结构说明"><a href="#MyBatis源码结构说明" class="headerlink" title="MyBatis源码结构说明"></a>MyBatis源码结构说明</h1><h2 id="阅读MyBatis源码时可以借助本文档快速查阅相应的包"><a href="#阅读MyBatis源码时可以借助本文档快速查阅相应的包" class="headerlink" title="阅读MyBatis源码时可以借助本文档快速查阅相应的包"></a>阅读MyBatis源码时可以借助本文档快速查阅相应的包</h2><ul>
+<li><p>org.apache.ibatis.annotations</p>
+<ul>
+<li>包含所有mapper接口中用到的注解。例如常用的@Param、@Update、@Select、@Delete</li>
+</ul>
+</li>
+<li><p>org.apache.ibatis.binding</p>
+<ul>
+<li>生成mapper接口的动态代理并进行管理</li>
+</ul>
+</li>
+<li><p>org.apache.ibatis.builder</p>
+<ul>
+<li>包含Configuration对象所有构建器，主要包括XML、注解2中方式配置解析</li>
+<li>BaseBuilder构建器基类</li>
+<li>XMLConfigBuilder解析Configuration.xml配置文件</li>
+<li>XMLMapperBuilder解析Mapper.xml配置文件</li>
+<li>XMLStatementBuilder解析select、update、delete标签</li>
+<li>MapperAnnotationBuilder注解式Mapper</li>
+</ul>
+</li>
+<li><p>org.apache.ibatis.cache</p>
+<ul>
+<li>缓存功能实现、包涵各种缓存装饰器</li>
+<li>TransactionalCache二级缓存功能实现</li>
+</ul>
+</li>
+<li><p>org.apache.ibatis.cursor</p>
+<ul>
+<li>实现游标的方式查询数据、游标非常适合处理百万级别的数据查询，通常情况下不适合一次性加载到内存中，这种方式类似使用SAX解析XML文件</li>
+</ul>
+</li>
+<li><p>org.apache.ibatis.datasource</p>
+<ul>
+<li>数据源包括jndi数据源、连接池功能</li>
+</ul>
+</li>
+<li><p>org.apache.ibatis.executor</p>
+<ul>
+<li>包含SQL语句执行器，核心功能包</li>
+<li>ErrorContext错误上下文对象，跟踪所有执行流程</li>
+<li>主要功能包括<ul>
+<li>主键生成功能</li>
+<li>执行餐睡解析功能</li>
+<li>执行结果集解析功能</li>
+<li>SQL执行器</li>
+<li>缓存执行器</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>org.apache.ibatis.exceptions</p>
+<ul>
+<li>框架异常，常见异常：TooManyResultsException</li>
+</ul>
+</li>
+<li><p>org.apache.ibatis.io</p>
+<ul>
+<li>资源文件读取</li>
+</ul>
+</li>
+<li><p>org.apache.ibatis.jdbc</p>
+<ul>
+<li>JDBC一些操作</li>
+<li>SqlRunner SQL执行</li>
+<li>ScriptRunner简本执行，可以执行建库语句，在执行测试用例时候用的非常多</li>
+</ul>
+</li>
+<li><p>org.apache.ibatis.lang</p>
+<ul>
+<li>这个包直邮两个注解@UsesJava7、@UsesJava8使用这两个注解标识哪些可以使用JDK7 API，哪些可以使用JDK8 API</li>
+</ul>
+</li>
+<li><p>org.apache.ibatis.logging</p>
+<ul>
+<li>日志功能，实现多种日志框架的对接</li>
+<li>org.apache.ibatis.logging.jdbc代理所有功能JDBC操作，实现了在debug模式下能够输出SQL</li>
+</ul>
+</li>
+<li><p>org.apache.ibatis.mapping</p>
+<ul>
+<li>配置文件与实体对象的映射功能，Mapper映射、参数映射、结果映射等</li>
+</ul>
+</li>
+<li><p>org.apache.ibatis.parsing</p>
+<ul>
+<li>解析工具包</li>
+<li>GenericTokenParser：解析#{}、${}这种占位符</li>
+<li>XPathParser：XPath形式解析XML</li>
+<li>PropertyParser：properties解析器</li>
+<li>org.apache.ibatis.plugin</li>
+</ul>
+</li>
+<li><p>org.apache.ibatis.plugin</p>
+<ul>
+<li>拦截器功能实现，使用代理模式实现拦截</li>
+</ul>
+</li>
+<li><p>org.apache.ibatis.reflection</p>
+<ul>
+<li>反射器功能，这个包下实现元数据编程</li>
+<li>通过把JAVA对象转换成元数据对象MetaObject，然后就可以把对元数据进行赋值操作，数据库查询结果到Java对象映射就是用过元对象实现</li>
+</ul>
+</li>
+<li><p>org.apache.ibatis.scription</p>
+<ul>
+<li>动态SQL语言实现，配置文件中<if>、<weher>、<set>、<foreach>、<choose>功能就是在这个包实现，借助OGNL表达式，你也可以拓展自己的语言实现功能</li>
+</ul>
+</li>
+<li><p>org.apache.ibatis.session</p>
+<ul>
+<li>主要实现SqlSession功能，非常核心包</li>
+<li>官方注释：SqlSession包涵了MyBatis工作的所有的Java接口，通过这些接口你可以执行SQL命令(select\insert\update\delete)，获取Mapper，管理事务</li>
+</ul>
+</li>
+<li><p>org.apache.ibatis.transaction</p>
+<ul>
+<li>事务功能实现，包装了数据库链接，处理数据库连接</li>
+<li>生命周期包括：连接创建，预编译，提交、回滚和关闭</li>
+</ul>
+</li>
+<li><p>org.apache.ibatis.type</p>
+<ul>
+<li>类型处理器，包括所有数据库类型对应Java类型的处理器，如果要实现自己类型处理器就需要实现包下的基础接口</li>
+</ul>
+</li>
+</ul>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/12/02/2020-05-02-SpringBoot%E5%AD%A6%E4%B9%A0(%E4%BA%8C)%E3%80%81%E5%BC%95%E5%85%A5mybatis/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/12/02/2020-05-02-SpringBoot%E5%AD%A6%E4%B9%A0(%E4%B8%80)/">
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":200})
+    NProgress.start()
+    document.addEventListener('DOMContentLoaded', function() {
+      window.NProgress && window.NProgress.inc();
+    })
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>

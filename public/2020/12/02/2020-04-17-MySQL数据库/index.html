@@ -1,0 +1,553 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="博客网站">
+  <meta name="author" content="Sybx">
+  <meta name="keywords" content="">
+  <title>Ice &amp; sybx</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"sybx.cc","root":"/","version":"1.8.6","typing":{"enable":true,"typeSpeed":70,"cursorChar":"|","loop":false},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"copy_btn":true,"image_zoom":{"enable":true},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Sybx</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-12-02 15:58" pubdate>
+        2020年12月2日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.4k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      14
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none"></h1>
+            
+            <div class="markdown-body">
+              <h2 id="性能基石-MySQL"><a href="#性能基石-MySQL" class="headerlink" title="性能基石 MySQL"></a>性能基石 MySQL</h2><h3 id="什么是数据库索引"><a href="#什么是数据库索引" class="headerlink" title="什么是数据库索引"></a>什么是数据库索引</h3><p>在关系 数据库中，索引是一种单独的、物理的对数据库表中一列或多列 的值进行排序的一种存储结构，它是某个表中一列或若干列值的集合和相应的志向表中物理标识这些 数值的数据页的逻辑指针清单。索引的作用相当于图书的目录，可以根据目录中的野马快速找到所需的内容。</p>
+<p>索引提供只想存储在表的制定劣种的数据值指针，然后根据你制定的排序顺序对这些指针排序。数据库使用索引以找到特定值，然后顺指针找到包含该值的行。这样可以使对应于表的SQL语句执行得更快，可快速访问数据库中的特定信息。</p>
+<h3 id="MySQL索引类型和区别"><a href="#MySQL索引类型和区别" class="headerlink" title="MySQL索引类型和区别"></a>MySQL索引类型和区别</h3><p><strong>普通锁索引：</strong>即一个索引只包含单个列，一个表可以有多个单列索引</p>
+<p><strong>唯一索引：</strong>索引列的值必须唯一，但允许有空值</p>
+<p><strong>复合索引：</strong>即一个索引包含多列</p>
+<p><strong>聚集索引：</strong>InnoDB，数据和索引放到一起</p>
+<p><strong>非聚集索引：</strong>MyIsam，数据和索引文件分开存放</p>
+<h3 id="如何进行SQL优化？"><a href="#如何进行SQL优化？" class="headerlink" title="如何进行SQL优化？"></a>如何进行SQL优化？</h3><h4 id="环境方面"><a href="#环境方面" class="headerlink" title="环境方面"></a>环境方面</h4><p>1.尽可能的使用告诉磁盘和大内存</p>
+<p>2.服务器使用Linux，并且进行操作系统级别的调优，比如网络参数、避免使用Swap交换区等等</p>
+<h4 id="SQL相关"><a href="#SQL相关" class="headerlink" title="SQL相关"></a>SQL相关</h4><p>1.<strong>先找到慢查询，</strong>慢查询日志，顾名思义，就是查询慢的日志，是指MySQL记录又有执行超过long_query_time参数设定的时间阀值的SQL语句日志。该日志能为SQL的优化带来很好的帮助。默认情况下，慢查询日志是关闭的，要是用慢查询日志功能，首先要开启慢查询日志功能。</p>
+<ul>
+<li><strong>Slow_query_log</strong>   启动停止记录慢查询日志</li>
+<li><strong>Slow_query_log_file</strong>   指定慢查询日志得存储路径及文件(默认和数据文件放一起)</li>
+<li><strong>long_query_time</strong>   指定记录慢查询日志SQL执行时间的阀值(单位：秒，默认10秒)</li>
+<li><strong>long_queries_not_usinng_indexes</strong>  是否记录未使用索引的SQL</li>
+<li><strong>long_ooutput</strong>  日志存档的地方 【<code>TABLE</code>、<code>FILE</code>、<code>FILE,TABLE</code>】</li>
+</ul>
+<p>2.<strong>分析慢查询日志。</strong>慢查询的 日志记录非常多，要从里面寻找一条查询慢的日志并不是很容易的事情，一般来说东欧需要一些工具辅助才能快速定位到需要优化的SQL语句，比如<code>Mysqldumpslow</code></p>
+<p>3.<strong>SQL本身优化，</strong>比如少用自查询 ，in查询改关联查询，不实用外键于级联等等</p>
+<p>4.<strong>反范式设计，</strong>字段允许适当冗余，选择合适的字段存储长度等等</p>
+<p>5.<strong>使用执行计划分析SQL语句，</strong>使用EXPLAIN关键字可以模拟优化器 执行 SQL查询语句，从而知道MySQL是如何处理你的SQL语句。分析你的查询语句或是表结构的性能瓶颈，至少可以知道：</p>
+<ul>
+<li><p>表的读取顺序</p>
+</li>
+<li><p>数据读取操作的操作类型</p>
+</li>
+<li><p>那些索引可以使用</p>
+</li>
+<li><p>那些索引被实际使用</p>
+</li>
+<li><p>表之间的饮用</p>
+</li>
+<li><p>每张表有多少行被优化器查询</p>
+<p><strong>比如，</strong>执行计划中deype显示的是访问类型 ，是较为重要的一个指标，结果值从最好到最坏依次是：</p>
+<p>​    **system &gt; const &gt; eq_ref &gt; ref &gt;fulltext &gt; ref_or_null &gt; index_merge &gt; unique_subquery &gt; index_subquery &gt; range &gt; index &gt; ALL **</p>
+<p>一般来说，得保证查询至少达到<strong>range</strong>级别，要求能达到<strong>ref</strong>。</p>
+</li>
+</ul>
+<h3 id="优化10-大策略"><a href="#优化10-大策略" class="headerlink" title="优化10 大策略"></a>优化10 大策略</h3><p><strong>1.尽量全值匹配</strong></p>
+<p>​    当简历了索引列侯，能在wherel条件中使用索引的尽量使用。</p>
+<p><strong>2.最佳左前缀法则</strong></p>
+<p>​    如果索引了多列，要最受最左前缀法则。指的是查询从索引的最左前列开始并且不跳过索引中的列。</p>
+<p><strong>3.不再索引列上做任何操作</strong></p>
+<p>​    不再索引列上做任何操作(计算、函数、(自动or手动)类型转换)，会 导致索引失效而转向全表扫描。</p>
+<p><strong>4.范围条件放最后</strong></p>
+<p>​    中间有范围查询会导致后面的索引列全部失效</p>
+<p><strong>5.覆盖索引尽量用</strong></p>
+<p>​    尽量使用覆盖索引(指一个查询语句的执行只用从索引中 就能够取得，不必从数据表中读取)，减少<code>select * </code>;</p>
+<p><strong>6.不等于要慎用</strong></p>
+<p>mysql在使用不等于(<code>!=</code> 或者<code>&lt; &gt;</code>)的时候无法使用索引会导致全表扫描，如果一定需要使用不等于，请使用覆盖索引</p>
+<p><strong>7.Null/Not有影响</strong></p>
+<p>​    注意null/not null 对索引的可能影响；</p>
+<p>​    1.自定义为NOT NULL  在字段为not null的情况下，使用is null或 is not null会导致索引失效</p>
+<p>​    解决方式：覆盖索引</p>
+<p>​    2.自定义为NULL或者不定义</p>
+<p>​    Is not null 的情况会导致索引失效        解决方式：覆盖索引</p>
+<p><strong>8.Like查询要当心</strong></p>
+<p>​    like已 通配符开头(‘%abc…’)mysql索引失效会变成全表扫描的操作      解决方式：覆盖索引</p>
+<p><strong>9.自负类型加引号</strong></p>
+<p>​    字符串不加单引号索引失效 </p>
+<p><strong>10.OR改UNION效率高</strong></p>
+<p>​    如果 一定要用OR，那么使用覆盖索引；</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/12/02/2020-05-01-%E9%87%8D%E6%96%B0%E8%AE%A4%E8%AF%86hashCode()%E4%B8%8Eequals/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/12/02/hello-world/">
+                        <span class="hidden-mobile">Hello World</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":200})
+    NProgress.start()
+    document.addEventListener('DOMContentLoaded', function() {
+      window.NProgress && window.NProgress.inc();
+    })
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>
